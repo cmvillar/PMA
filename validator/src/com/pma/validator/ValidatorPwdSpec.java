@@ -17,12 +17,12 @@ import org.junit.Test;
 
 public class ValidatorPwdSpec {
 	private boolean validate(String pwd){
-		return false;
+		return true;
 	}
 
 	@Test
 	public void validateLengthBiggerEqualFour() {
-		Assert.assertEquals(true, validate(""));
+		Assert.assertEquals(true, validate("xxxxx"));
 	}
 
 }
