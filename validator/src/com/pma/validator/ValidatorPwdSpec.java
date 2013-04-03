@@ -17,7 +17,7 @@ import org.junit.Test;
 
 public class ValidatorPwdSpec {
 	private boolean validate(String pwd){
-		return pwd.length()>=4;
+		return (pwd.length()>=4) && (pwd.matches("[a-z]+"));
 	}
 
 	@Test
@@ -32,6 +32,6 @@ public class ValidatorPwdSpec {
 	
 	@Test
 	public void ckeckAtLeastOneLowerCaseChar(){
-		fail("");
+		Assert.assertTrue(validate("aaaa"));
 	}
 }
