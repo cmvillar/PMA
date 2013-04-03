@@ -43,4 +43,9 @@ public class ValidatorPwdSpec {
 	public void ckeckAtLeastOneLowerCaseChar(){
 		Assert.assertTrue(validate("aaaa"));
 	}
+	
+	@Test
+	public void ckeckAtLeastOneUpperCaseChar(){
+		fail("");
+	}
 }
