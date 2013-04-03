@@ -21,7 +21,7 @@ public class ValidatorPwdSpec {
 	}
 
 	@Test
-	public void validateLengthBiggerEqualFour() {
+	public void checkValidPwd_LengthBiggerOrEqualFour() {
 		Assert.assertEquals(true, validate("xxxxx"));
 	}
 	
@@ -29,5 +29,9 @@ public class ValidatorPwdSpec {
 	public void checkInvalidPwdLength(){
 		Assert.assertFalse(validate(""));
 	}
-
+	
+	@Test
+	public void ckeckAtLeastOneLowerCaseChar(){
+		fail("");
+	}
 }
