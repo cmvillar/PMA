@@ -1,6 +1,7 @@
 package com.pma.validator;
 
 import static org.junit.Assert.*;
+import junit.framework.Assert;
 
 import org.junit.Test;
 
@@ -15,10 +16,13 @@ import org.junit.Test;
  */
 
 public class ValidatorPwdSpec {
+	private boolean validate(String pwd){
+		return false;
+	}
 
 	@Test
-	public void test() {
-		fail("");
+	public void validateLengthBiggerEqualFour() {
+		Assert.assertEquals(true, validate(""));
 	}
 
 }
