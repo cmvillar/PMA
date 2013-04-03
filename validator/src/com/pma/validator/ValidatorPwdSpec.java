@@ -17,8 +17,17 @@ import org.junit.Test;
 
 public class ValidatorPwdSpec {
 	private boolean validate(String pwd){
-		return (pwd.length()>=4) && (pwd.matches("[a-z]+"));
+		return isLengthBiggerOrEqualFour(pwd) && hasPwdAtLeastOneLowerChar(pwd);
 	}
+
+	private boolean hasPwdAtLeastOneLowerChar(String pwd) {
+		return pwd.matches("[a-z]+");
+	}
+
+	private boolean isLengthBiggerOrEqualFour(String pwd) {
+		return pwd.length()>=4;
+	}
+	
 
 	@Test
 	public void checkValidPwd_LengthBiggerOrEqualFour() {
