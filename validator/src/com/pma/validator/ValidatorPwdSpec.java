@@ -17,16 +17,17 @@ import org.junit.Test;
 public class ValidatorPwdSpec {
 	private boolean validate(String pwd){
 		return isLengthBiggerOrEqualFour(pwd) 
-				&& hasPwdAtLeastOneLowerChar(pwd) 
-				&& hasPwdAtLeastOneUpperChar(pwd);
+				&& hasPwdAtLeastOneLowerChar(pwd)
+				&& hasPwdAtLeastOneUpperChar(pwd) && pwd.matches("[a-zA-Z0-9]*[0-9]+[a-zA-Z0-9]*");
 	}
 
 	private boolean hasPwdAtLeastOneLowerChar(String pwd) {
-		return pwd.matches("[a-z]*[A-Z]*[a-z]+[A-Z]*[a-z]*");
+		return pwd.matches("[a-zA-Z0-9]*[a-z]+[a-zA-Z0-9]*");
 	}
 	
 	private boolean hasPwdAtLeastOneUpperChar(String pwd) {
-		return pwd.matches("[a-z]*[A-Z]*[a-z]+[A-Z]*[a-z]*");
+		//return true;
+		return pwd.matches("[a-zA-Z0-9]*[A-Z]+[a-zA-Z0-9]*");
 	}
 
 	private boolean isLengthBiggerOrEqualFour(String pwd) {
@@ -36,7 +37,7 @@ public class ValidatorPwdSpec {
 
 	@Test
 	public void checkValidPwd_LengthBiggerOrEqualFour() {
-		Assert.assertEquals(true, validate("xxxxA"));
+		Assert.assertEquals(true, validate("xaxA1"));
 	}
 	
 	@Test
@@ -46,15 +47,16 @@ public class ValidatorPwdSpec {
 	
 	@Test
 	public void ckeckAtLeastOneLowerCaseChar(){
-		Assert.assertTrue(validate("AaAAA"));
+		Assert.assertTrue(validate("AaA1AA"));
 	}
 	
 	@Test
 	public void ckeckAtLeastOneUpperCaseChar(){
-		Assert.assertTrue(validate("aaaAxxx"));
+		Assert.assertTrue(validate("aa1aAx"));
 	}
+	
 	@Test
 	public void ckeckAtLeastANumberAndALetter(){
-		Assert.fail();
+		Assert.assertTrue(validate("1111aA"));
 	}
 }
