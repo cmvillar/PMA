@@ -1,6 +1,5 @@
 package com.pma.validator;
 
-import static org.junit.Assert.*;
 import junit.framework.Assert;
 
 import org.junit.Test;
@@ -17,13 +16,18 @@ import org.junit.Test;
 
 public class ValidatorPwdSpec {
 	private boolean validate(String pwd){
-		return isLengthBiggerOrEqualFour(pwd) && hasPwdAtLeastOneLowerChar(pwd) && pwd.matches("[a-z]*[A-Z]*[A-Z]+[A-Z]*[a-z]*");
+		return isLengthBiggerOrEqualFour(pwd) 
+				&& hasPwdAtLeastOneLowerChar(pwd) 
+				&& hasPwdAtLeastOneUpperChar(pwd);
 	}
 
 	private boolean hasPwdAtLeastOneLowerChar(String pwd) {
 		return pwd.matches("[a-z]*[A-Z]*[a-z]+[A-Z]*[a-z]*");
 	}
 	
+	private boolean hasPwdAtLeastOneUpperChar(String pwd) {
+		return pwd.matches("[a-z]*[A-Z]*[a-z]+[A-Z]*[a-z]*");
+	}
 
 	private boolean isLengthBiggerOrEqualFour(String pwd) {
 		return pwd.length()>=4;
@@ -42,7 +46,7 @@ public class ValidatorPwdSpec {
 	
 	@Test
 	public void ckeckAtLeastOneLowerCaseChar(){
-		Assert.assertTrue(validate("aaaAaa"));
+		Assert.assertTrue(validate("AaAAA"));
 	}
 	
 	@Test
