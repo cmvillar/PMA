@@ -53,4 +53,8 @@ public class ValidatorPwdSpec {
 	public void ckeckAtLeastOneUpperCaseChar(){
 		Assert.assertTrue(validate("aaaAxxx"));
 	}
+	@Test
+	public void ckeckAtLeastANumberAndALetter(){
+		Assert.fail();
+	}
 }
