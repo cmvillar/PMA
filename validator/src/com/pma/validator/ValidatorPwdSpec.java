@@ -18,7 +18,12 @@ public class ValidatorPwdSpec {
 	private boolean validate(String pwd){
 		return isLengthBiggerOrEqualFour(pwd) 
 				&& hasPwdAtLeastOneLowerChar(pwd)
-				&& hasPwdAtLeastOneUpperChar(pwd) && pwd.matches("[a-zA-Z0-9]*[0-9]+[a-zA-Z0-9]*");
+				&& hasPwdAtLeastOneUpperChar(pwd) 
+				&& hasPwdAtLeastAFigure(pwd);
+	}
+
+	private boolean hasPwdAtLeastAFigure(String pwd) {
+		return pwd.matches("[a-zA-Z0-9]*[0-9]+[a-zA-Z0-9]*");
 	}
 
 	private boolean hasPwdAtLeastOneLowerChar(String pwd) {
