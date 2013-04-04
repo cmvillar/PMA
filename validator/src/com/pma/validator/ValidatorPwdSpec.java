@@ -17,12 +17,13 @@ import org.junit.Test;
 
 public class ValidatorPwdSpec {
 	private boolean validate(String pwd){
-		return isLengthBiggerOrEqualFour(pwd) && hasPwdAtLeastOneLowerChar(pwd);
+		return isLengthBiggerOrEqualFour(pwd) && hasPwdAtLeastOneLowerChar(pwd) && pwd.matches("[a-z]*[A-Z]*[A-Z]+[A-Z]*[a-z]*");
 	}
 
 	private boolean hasPwdAtLeastOneLowerChar(String pwd) {
-		return pwd.matches("[a-z]+");
+		return pwd.matches("[a-z]*[A-Z]*[a-z]+[A-Z]*[a-z]*");
 	}
+	
 
 	private boolean isLengthBiggerOrEqualFour(String pwd) {
 		return pwd.length()>=4;
@@ -31,7 +32,7 @@ public class ValidatorPwdSpec {
 
 	@Test
 	public void checkValidPwd_LengthBiggerOrEqualFour() {
-		Assert.assertEquals(true, validate("xxxxx"));
+		Assert.assertEquals(true, validate("xxxxA"));
 	}
 	
 	@Test
@@ -41,11 +42,11 @@ public class ValidatorPwdSpec {
 	
 	@Test
 	public void ckeckAtLeastOneLowerCaseChar(){
-		Assert.assertTrue(validate("aaaa"));
+		Assert.assertTrue(validate("aaaAaa"));
 	}
 	
 	@Test
 	public void ckeckAtLeastOneUpperCaseChar(){
-		fail("");
+		Assert.assertTrue(validate("aaaAxxx"));
 	}
 }
