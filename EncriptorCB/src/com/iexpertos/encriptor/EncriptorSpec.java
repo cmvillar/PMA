@@ -29,10 +29,9 @@ public class EncriptorSpec {
 		Assert.assertEquals(encriptor.cryptWord("hola"), "jqnc");
 	}
 
-	
 	@Test
-	public void testCryptSentence() {
-		Assert.fail();
+	public void cryptSentence() {
+		assertEquals(encriptor.cryptSentence("hola, que tal estas?"), "jqnc.\"swg\"vcn\"guvcuA");
 	}
 
 }
