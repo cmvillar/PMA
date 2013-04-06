@@ -12,17 +12,8 @@ public class Encriptor {
 	
 	public String cryptWord(String word)
 	{
-		validateBlankSpaces(word);
-		
-		char[] wordArray = word.toCharArray();
-		String newWord = "";
-		for (int i = 0; i < word.length(); i++)
-		{
-			int charValue = wordArray[i];
-			newWord += String.valueOf((char)( charValue + 2));
-		}
-		
-		return newWord;
+		validateBlankSpaces(word);		
+		return cryptSentence(word);
 	}
 
 	public String cryptSentence(String sentence)
