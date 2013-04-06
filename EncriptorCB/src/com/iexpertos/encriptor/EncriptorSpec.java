@@ -38,7 +38,7 @@ public class EncriptorSpec {
 	
 	@Test(expected=NullPointerException.class)
 	public void checkNullWord(){
-		Assert.fail();
+		Assert.assertEquals(encriptor.cryptWord(null),null);
 	}
 	
 
