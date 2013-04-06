@@ -53,7 +53,8 @@ public class EncriptorSpec {
 	
 	@Test
 	public void getWords() {
-		Assert.fail();
+		String[] resultadoEsperado = new String[]{"hola,","que", "tal", "estas?"};			
+		Assert.assertEquals(encriptor.getWords("hola, que tal estas?"), resultadoEsperado);
 	}
 
 }
