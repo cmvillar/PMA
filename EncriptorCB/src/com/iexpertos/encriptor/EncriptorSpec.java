@@ -33,7 +33,12 @@ public class EncriptorSpec {
 
 	@Test
 	public void cryptSentence() {
-		assertEquals(encriptor.cryptSentence("hola, que tal estas?"), "jqnc.\"swg\"vcn\"guvcuA");
+		Assert.assertEquals(encriptor.cryptSentence("hola, que tal estas?"), "jqnc.\"swg\"vcn\"guvcuA");
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void checkNullWord(){
+		Assert.fail();
 	}
 	
 
