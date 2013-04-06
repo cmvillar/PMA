@@ -44,7 +44,13 @@ public class EncriptorSpec {
 	@Test
 	public void cryptWordToNumbers() {
 		Assert.assertEquals(encriptor.cryptWordToNumbers("hola"),"10611311099");
-	}	
+	}
+	
+	@Test
+	public void cryptWordToReplace() {
+		Assert.fail();
+	}
+	
 	
 
 }
