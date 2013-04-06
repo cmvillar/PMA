@@ -41,5 +41,10 @@ public class EncriptorSpec {
 		Assert.assertEquals(encriptor.cryptWord(null),null);
 	}
 	
+	@Test
+	public void cryptWordToNumbers() {
+		Assert.fail();
+	}	
+	
 
 }
