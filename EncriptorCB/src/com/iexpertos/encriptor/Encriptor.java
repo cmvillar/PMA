@@ -5,10 +5,14 @@ import java.security.InvalidParameterException;
 
 public class Encriptor {
 	
-	public String cryptWord(String word)
-	{
+	private void validateBlankSpaces(String word) {
 		if (word.contains(" "))
 			throw new InvalidParameterException();
+	}
+	
+	public String cryptWord(String word)
+	{
+		validateBlankSpaces(word);
 		
 		char[] wordArray = word.toCharArray();
 		String newWord = "";
@@ -20,11 +24,23 @@ public class Encriptor {
 		
 		return newWord;
 	}
+
+	public String cryptSentence(String sentence)
+	{
+		char[] sentenceArray = sentence.toCharArray();
+		String newWord = "";
+		for (int i = 0; i < sentence.length(); i++)
+		{
+			int charValue = sentenceArray[i];
+			newWord += String.valueOf((char)( charValue + 2));
+		}
+		
+		return newWord;
+	}
 	
 	public String cryptWordToNumbers(String word)
 	{
-		if (word.contains(" "))
-			throw new InvalidParameterException();
+		validateBlankSpaces(word);
 		
 		char[] wordArray = word.toCharArray();
 		String newWord = "";
@@ -39,8 +55,7 @@ public class Encriptor {
 
 	public String cryptWord(String word, String charsToReplace)
 	{
-		if (word.contains(" "))
-			throw new InvalidParameterException();
+		validateBlankSpaces(word);
 		
 		char[] wordArray = word.toCharArray();
 		char[] replacement = charsToReplace.toCharArray();
@@ -59,18 +74,7 @@ public class Encriptor {
 		return String.valueOf(result);
 	}
 	
-	public String cryptSentence(String sentence)
-	{
-		char[] sentenceArray = sentence.toCharArray();
-		String newWord = "";
-		for (int i = 0; i < sentence.length(); i++)
-		{
-			int charValue = sentenceArray[i];
-			newWord += String.valueOf((char)( charValue + 2));
-		}
-		
-		return newWord;
-	}
+
 	
 	public String[] getWords(String sentence)
 	{
