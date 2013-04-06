@@ -1,10 +1,10 @@
-package com.iexpertos.encriptor.CharEncriptor;
+package com.iexpertos.encriptor.charencriptor;
 
-public class CrypterWordReplace implements Crypter {
+public class CharCrypterWordReplace implements CharCrypter {
 
 	private char[] replacement;
 	
-	public CrypterWordReplace(String charsToReplace){
+	public CharCrypterWordReplace(String charsToReplace){
 		this.replacement = charsToReplace.toCharArray();
 	}
 	
