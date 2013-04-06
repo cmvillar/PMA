@@ -51,6 +51,9 @@ public class EncriptorSpec {
 		Assert.assertEquals(encriptor.cryptWord("hola", "o"),"hqla");
 	}
 	
-	
+	@Test
+	public void getWords() {
+		Assert.fail();
+	}
 
 }
