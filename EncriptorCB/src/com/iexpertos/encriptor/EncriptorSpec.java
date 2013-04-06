@@ -48,7 +48,7 @@ public class EncriptorSpec {
 	
 	@Test
 	public void cryptWordToReplace() {
-		Assert.fail();
+		Assert.assertEquals(encriptor.cryptWord("hola", "o"),"hqla");
 	}
 	
 	
