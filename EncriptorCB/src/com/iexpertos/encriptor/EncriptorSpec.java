@@ -33,5 +33,6 @@ public class EncriptorSpec {
 	public void cryptSentence() {
 		assertEquals(encriptor.cryptSentence("hola, que tal estas?"), "jqnc.\"swg\"vcn\"guvcuA");
 	}
+	
 
 }

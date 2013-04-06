@@ -2,24 +2,15 @@ package com.iexpertos.encriptor;
 
 import java.security.InvalidParameterException;
 
+import com.iexpertos.encriptor.CharEncriptor.Crypter;
+import com.iexpertos.encriptor.CharEncriptor.CrypterSentence;
+import com.iexpertos.encriptor.CharEncriptor.CrypterWordToNumber;
+
 
 public class Encriptor {
-
-	class CrypterSentence{
-		public String crypt(int charValue){
-			return String.valueOf((char)( charValue + 2));
-		}
-	}
 	
-	class CrypterWordToNumber{
-		public String crypt(int charValue){
-			return String.valueOf(charValue + 2);
-		}
-	}
-	
-	
-	private CrypterSentence crypterSentence;
-	private CrypterWordToNumber crypterWordToNumber;
+	public Crypter crypterSentence;
+	public CrypterWordToNumber crypterWordToNumber;
 	
 	public Encriptor(){
 		crypterSentence = new CrypterSentence();
