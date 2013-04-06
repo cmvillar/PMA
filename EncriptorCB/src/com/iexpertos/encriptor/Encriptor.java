@@ -5,58 +5,49 @@ import java.security.InvalidParameterException;
 import com.iexpertos.encriptor.CharEncriptor.Crypter;
 import com.iexpertos.encriptor.CharEncriptor.CrypterSentence;
 import com.iexpertos.encriptor.CharEncriptor.CrypterWordToNumber;
+import com.iexpertos.encriptor.validator.Validator;
 
 
 public class Encriptor {
 	
-	public Crypter crypterSentence;
-	public CrypterWordToNumber crypterWordToNumber;
+	public Validator validator;
 	
-	public Encriptor(){
-		crypterSentence = new CrypterSentence();
-		crypterWordToNumber = new CrypterWordToNumber();
+	public Encriptor(Validator validator){
+		this.validator = validator;
 	}
 	
-	private void validateBlankSpaces(String word) {
-		if (word.contains(" "))
-			throw new InvalidParameterException();
-	}
 	
 	public String cryptWord(String word)
 	{
-		validateBlankSpaces(word);		
+		validator.validate(word);		
 		return cryptSentence(word);
 	}
 
 	public String cryptSentence(String sentence)
 	{
-		char[] sentenceArray = sentence.toCharArray();
+		return crypt(sentence, new CrypterSentence());
+	}
+	
+	public String cryptWordToNumbers(String word)
+	{
+		validator.validate(word);
+		return crypt(word, new CrypterWordToNumber());
+	}
+
+	private String crypt(String word, Crypter crypter){
+		char[] wordArray = word.toCharArray();
 		String newWord = "";
-		for (int i = 0; i < sentence.length(); i++)
+		for (int i = 0; i < word.length(); i++)
 		{
-			newWord += crypterSentence.crypt(sentenceArray[i]);
+			newWord += crypter.crypt(wordArray[i]);
 		}
 		
 		return newWord;
 	}
 	
-	public String cryptWordToNumbers(String word)
-	{
-		validateBlankSpaces(word);
-		
-		char[] wordArray = word.toCharArray();
-		String newWord = "";
-		for (int i = 0; i < word.length(); i++)
-		{
-			newWord += crypterWordToNumber.crypt(wordArray[i]);
-		}
-		
-		return newWord;
-	}
-
 	public String cryptWord(String word, String charsToReplace)
 	{
-		validateBlankSpaces(word);
+		validator.validate(word);
 		
 		char[] wordArray = word.toCharArray();
 		char[] replacement = charsToReplace.toCharArray();

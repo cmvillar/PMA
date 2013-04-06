@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.iexpertos.encriptor.validator.BlankValidator;
+
 public class EncriptorSpec {
 	private Encriptor encriptor;
 
@@ -21,7 +23,7 @@ public class EncriptorSpec {
 
 	@Before
 	public void setUp(){
-		encriptor = new Encriptor();
+		encriptor = new Encriptor(new BlankValidator());
 	}
 	
 	@Test

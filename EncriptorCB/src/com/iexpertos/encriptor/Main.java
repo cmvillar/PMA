@@ -1,5 +1,7 @@
 package com.iexpertos.encriptor;
 
+import com.iexpertos.encriptor.validator.BlankValidator;
+
 public class Main {
 
 	/**
@@ -7,7 +9,7 @@ public class Main {
 	 */
 	
 	public static void main(String[] args) {
-		Encriptor encriptor = new Encriptor();
+		Encriptor encriptor = new Encriptor(new BlankValidator());
 		System.out.println("1:" + encriptor.cryptWord("hola"));
 		System.out.println("2:" + encriptor.cryptWordToNumbers("hola"));
 		System.out.println("3:" + encriptor.cryptWord("hola", "o"));
