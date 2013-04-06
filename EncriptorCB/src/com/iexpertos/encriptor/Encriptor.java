@@ -4,6 +4,27 @@ import java.security.InvalidParameterException;
 
 
 public class Encriptor {
+
+	class CrypterSentence{
+		public String crypt(int charValue){
+			return String.valueOf((char)( charValue + 2));
+		}
+	}
+	
+	class CrypterWordToNumber{
+		public String crypt(int charValue){
+			return String.valueOf(charValue + 2);
+		}
+	}
+	
+	
+	private CrypterSentence crypterSentence;
+	private CrypterWordToNumber crypterWordToNumber;
+	
+	public Encriptor(){
+		crypterSentence = new CrypterSentence();
+		crypterWordToNumber = new CrypterWordToNumber();
+	}
 	
 	private void validateBlankSpaces(String word) {
 		if (word.contains(" "))
@@ -22,8 +43,7 @@ public class Encriptor {
 		String newWord = "";
 		for (int i = 0; i < sentence.length(); i++)
 		{
-			int charValue = sentenceArray[i];
-			newWord += String.valueOf((char)( charValue + 2));
+			newWord += crypterSentence.crypt(sentenceArray[i]);
 		}
 		
 		return newWord;
@@ -37,8 +57,7 @@ public class Encriptor {
 		String newWord = "";
 		for (int i = 0; i < word.length(); i++)
 		{
-			int charValue = wordArray[i];
-			newWord += String.valueOf(charValue + 2);
+			newWord += crypterWordToNumber.crypt(wordArray[i]);
 		}
 		
 		return newWord;
