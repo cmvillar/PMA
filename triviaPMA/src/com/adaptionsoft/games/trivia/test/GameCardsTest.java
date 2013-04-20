@@ -1,14 +1,23 @@
 package com.adaptionsoft.games.trivia.test;
 
-import static org.junit.Assert.*;
+import junit.framework.Assert;
 
 import org.junit.Test;
 
-public class GameCardsTest {
+import com.adaptionsoft.games.trivia.runner.GameCards;
 
+
+public class GameCardsTest extends AbstractTriviaTest{
+	public GameCardsTest(){
+		super();
+	}
+	
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void askPopQuestion() {
+		GameCards gameCards = new GameCards();
+		gameCards.initialiceGameCards();
+		gameCards.askQuestion(GameCards.POP_CATEGORY);
+		Assert.assertEquals(1763398543L, checker.checksum.getValue());
 	}
 
 }
