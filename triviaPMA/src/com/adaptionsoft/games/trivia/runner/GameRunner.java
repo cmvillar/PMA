@@ -7,16 +7,16 @@ import com.adaptionsoft.games.uglytrivia.Game;
 
 public class GameRunner {
 
-	private static boolean notAWinner;
+	private boolean notAWinner;
 
-	public static void main(String[] args) {
-		Game aGame = initialize();
+	public void main(String[] args) {
+		Game theGame = initialize();
 		Random rand = new Random();
-		run(aGame,rand);
+		run(theGame,rand);
 		
 	}
 	
-	public static void run(Game aGame, Random rand) {
+	public void run(Game aGame, Random rand) {
 		do {
 			
 			aGame.roll(rand.nextInt(5) + 1);
@@ -30,7 +30,7 @@ public class GameRunner {
 		} while (notAWinner);
 	}
 	
-	public static Game initialize() {
+	public Game initialize() {
 		Game aGame = new Game();
 		aGame.add("Chet");
 		aGame.add("Pat");
