@@ -89,13 +89,13 @@ public class Game {
 
 	private void askQuestion() {
 		if (currentCategory() == "Pop")
-			System.out.println(gameCards.popQuestions.removeFirst());
+			gameCards.askQuestion(GameCards.POP_CATEGORY);
 		if (currentCategory() == "Science")
-			System.out.println(gameCards.scienceQuestions.removeFirst());
+			gameCards.askQuestion(GameCards.SCIENCE_CATEGORY);
 		if (currentCategory() == "Sports")
-			System.out.println(gameCards.sportsQuestions.removeFirst());
+			gameCards.askQuestion(GameCards.SPORT_CATEGORY);
 		if (currentCategory() == "Rock")
-			System.out.println(gameCards.rockQuestions.removeFirst());		
+			gameCards.askQuestion(GameCards.ROCK_CATEGORY);	
 	}
 
 	private String currentCategory() {
