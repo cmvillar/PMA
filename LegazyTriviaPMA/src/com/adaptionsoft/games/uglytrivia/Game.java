@@ -2,11 +2,15 @@ package com.adaptionsoft.games.uglytrivia;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.Random;
 
+import com.adaptionsoft.games.trivia.dice.Dice;
 import com.adaptionsoft.games.trivia.runner.GameCards;
 
 public class Game {
 	private GameCards gameCards;
+	private Random random;
+	private Dice dice;
 	
     private ArrayList<String> players = new ArrayList<String>();
     private int[] places = new int[6];
@@ -17,9 +21,11 @@ public class Game {
     private int currentPlayer = 0;
     private boolean isGettingOutOfPenaltyBox;
     
-    public  Game(){
+    public  Game(Random random, Dice dice){
        	gameCards = new GameCards();
     	gameCards.initialiceGameCards();
+    	this.random = random;
+    	this.dice = dice;
     }
 
 	public boolean add(String playerName) {

@@ -2,6 +2,9 @@
 package com.adaptionsoft.games.trivia.runner;
 import java.util.Random;
 
+import com.adaptionsoft.games.trivia.dice.Dice;
+import com.adaptionsoft.games.trivia.dice.SingleDice;
+import com.adaptionsoft.games.trivia.dice.TenSidedDice;
 import com.adaptionsoft.games.uglytrivia.Game;
 
 
@@ -10,10 +13,8 @@ public class GameRunner {
 	private static boolean notAWinner;
 
 	public static void main(String[] args) {
-		Game aGame = initialize();
-				
 		Random rand = new Random();
-	
+		Game aGame = initialize(rand);
 		run(aGame, rand);
 		
 	}
@@ -34,8 +35,8 @@ public class GameRunner {
 		} while (notAWinner);
 	}
 	
-	public static Game initialize(){
-		Game aGame = new Game();
+	public static Game initialize(Random random){
+		Game aGame = new Game(random, new SingleDice());
 		
 		aGame.add("Chet");
 		aGame.add("Pat");
