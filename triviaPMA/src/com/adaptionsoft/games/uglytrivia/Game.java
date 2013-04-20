@@ -3,6 +3,8 @@ package com.adaptionsoft.games.uglytrivia;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import com.adaptionsoft.games.trivia.runner.GameCards;
+
 public class Game {
 	private GameCards gameCards;
 	
@@ -11,25 +13,6 @@ public class Game {
     int[] purses  = new int[6];
     boolean[] inPenaltyBox  = new boolean[6];
     int[] highscores= new int[6];
-
-    class GameCards{
-	    LinkedList popQuestions = new LinkedList();
-	    LinkedList scienceQuestions = new LinkedList();
-	    LinkedList sportsQuestions = new LinkedList();
-	    LinkedList rockQuestions = new LinkedList();
-	    public GameCards(){
-	    	
-	    }
-	    
-	    public void initialiceGameCards(){
-	    	for (int i = 0; i < 50; i++) {
-				popQuestions.addLast("Pop Question " + i);
-				scienceQuestions.addLast(("Science Question " + i));
-				sportsQuestions.addLast(("Sports Question " + i));
-				rockQuestions.addLast("Rock Question " + i);
-	    	}
-	    }
-    }
     
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
