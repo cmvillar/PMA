@@ -24,10 +24,9 @@ public class TriviaTest extends AbstractTriviaTest{
 	public void outputStream() {
 		System.setOut(new PrintStream(checker));
 		Random rand = new Random(0L);
-		GameRunner gameRunner = new GameRunner();
-		Game game = gameRunner.initialize();
-		gameRunner.run(game, rand);
-		Assert.assertEquals(1763398543L, checker.checksum.getValue());
+		Game game = GameRunner.initialize();
+		GameRunner.run(game, rand);
+		Assert.assertEquals(590124755L, checker.checksum.getValue());
 		
 	}
 
