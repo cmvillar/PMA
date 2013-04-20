@@ -14,7 +14,7 @@ public class GameRunner {
 
 	public static void main(String[] args) {
 		Random rand = new Random();
-		Game aGame = initialize(rand);
+		Game aGame = initialize(rand,new SingleDice());
 		run(aGame, rand);
 		
 	}
@@ -25,8 +25,8 @@ public class GameRunner {
 		} while (!aGame.isAWinner());
 	}
 	
-	public static Game initialize(Random random){
-		Game aGame = new Game(random, new SingleDice());
+	public static Game initialize(Random random, Dice dice){
+		Game aGame = new Game(random, dice);
 		
 		aGame.add("Chet");
 		aGame.add("Pat");
