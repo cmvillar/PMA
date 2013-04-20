@@ -22,16 +22,6 @@ public class Game {
     	gameCards.initialiceGameCards();
     }
 
-
-	/**
-	 * Return true if the game is playable.
-	 * 
-	 * @return true if the game is playable.
-	 */
-	public boolean isPlayable() {
-		return (howManyPlayers() >= 2);
-	}
-
 	public boolean add(String playerName) {		
 	    players.add(playerName);
 	    places[howManyPlayers()] = 0;
@@ -99,16 +89,14 @@ public class Game {
 	}
 
 	private String currentCategory() {
-		if (places[currentPlayer] == 0) return "Pop";
-		if (places[currentPlayer] == 4) return "Pop";
-		if (places[currentPlayer] == 8) return "Pop";
-		if (places[currentPlayer] == 1) return "Science";
-		if (places[currentPlayer] == 5) return "Science";
-		if (places[currentPlayer] == 9) return "Science";
-		if (places[currentPlayer] == 2) return "Sports";
-		if (places[currentPlayer] == 6) return "Sports";
-		if (places[currentPlayer] == 10) return "Sports";
-		return "Rock";
+		if (places[currentPlayer] % 4 == 0) 
+			return "Pop";
+		else if (places[currentPlayer] % 4 == 1) 
+			return "Science";
+		else if (places[currentPlayer] % 4 == 2) 
+			return "Sports";
+		else
+			return "Rock";
 	}
 
 	public boolean wasCorrectlyAnswered() {
