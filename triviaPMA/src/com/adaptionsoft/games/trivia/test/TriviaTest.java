@@ -15,14 +15,8 @@ import com.adaptionsoft.games.trivia.runner.GameRunner;
 import com.adaptionsoft.games.uglytrivia.Game;
 
 
-public class TriviaTest {
+public class TriviaTest extends AbstractTriviaTest{
 
-	class Checker extends OutputStream{
-		Checksum checksum = new CRC32();
-		public void write (int b) throws IOException{
-			checksum.update(b);
-		}
-	}
 	
 	@Test
 	public void outputStream() {
