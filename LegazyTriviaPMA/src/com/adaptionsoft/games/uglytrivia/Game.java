@@ -118,45 +118,43 @@ public class Game {
 		boolean winner = false;
 		if (inPenaltyBox[currentPlayer]){
 			if (isGettingOutOfPenaltyBox) {
-				System.out.println("Answer was correct!!!!");
-				purses[currentPlayer]++;
-				System.out.println(players.get(currentPlayer) 
-						+ " now has "
-						+ purses[currentPlayer]
-						+ " Gold Coins.");
-				
-				winner = didPlayerWin();
+				winner = correctAnswer();
 			} else {
-				winner = true;;
+				winner = true;
 			}
 
 		} else {
-		
-			System.out.println("Answer was correct!!!!");
-			purses[currentPlayer]++;
-			System.out.println(players.get(currentPlayer) 
-					+ " now has "
-					+ purses[currentPlayer]
-					+ " Gold Coins.");
-			
-			winner = didPlayerWin();
+			winner = correctAnswer();
 		}
 		nextPlayer();	
 		return winner;
 	}
 
-	private void nextPlayer() {
-		currentPlayer++;
-		if (currentPlayer == players.size()) currentPlayer = 0;
+	private boolean correctAnswer() {
+		System.out.println("Answer was correct!!!!");
+		purses[currentPlayer]++;
+		System.out.println(players.get(currentPlayer) 
+				+ " now has "
+				+ purses[currentPlayer]
+				+ " Gold Coins.");
+		return didPlayerWin();
 	}
-	
-	public boolean wrongAnswer(){
+
+	private boolean wrongAnswer(){
 		System.out.println("Question was incorrectly answered");
 		System.out.println(players.get(currentPlayer)+ " was sent to the penalty box");
 		inPenaltyBox[currentPlayer] = true;
 		nextPlayer();
 		return true;
 	}
+	
+	
+	private void nextPlayer() {
+		currentPlayer++;
+		if (currentPlayer == players.size()) currentPlayer = 0;
+	}
+	
+
 
 	/**
 	 * Tells if the last player won.
