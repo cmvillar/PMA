@@ -1,27 +1,17 @@
-package com.adaptionsoft.games.trivia.runner;
-
-import static org.junit.Assert.*;
-
-import java.io.IOException;
-import java.io.OutputStream;
+package com.adaptionsoft.games.trivia.runner.test;
 import java.io.PrintStream;
 import java.util.Random;
-import java.util.zip.CRC32;
-import java.util.zip.Checksum;
+
 
 import junit.framework.Assert;
 
 import org.junit.Test;
 
+import com.adaptionsoft.games.trivia.runner.GameRunner;
 import com.adaptionsoft.games.uglytrivia.Game;
 
-public class TriviaTest {
-	class Checker extends OutputStream{
-		Checksum checksum = new CRC32();
-		public void write (int b) throws IOException{
-			checksum.update(b);
-		}
-	}
+public class TriviaTest extends AbstractTriviaTest{
+
 	
 	@Test
 	public void test() {
