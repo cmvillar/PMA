@@ -1,5 +1,12 @@
 package com.iexpertos.encriptor.test;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.util.Random;
+import java.util.zip.CRC32;
+import java.util.zip.Checksum;
+
 import org.junit.Assert;
 
 import org.junit.Before;
@@ -61,6 +68,23 @@ public class EncriptorSpec {
 	public void getWords() {
 		String[] resultadoEsperado = new String[]{"hola,","que", "tal", "estas?"};			
 		Assert.assertEquals(encriptor.getWords("hola, que tal estas?"), resultadoEsperado);
+	}
+	
+	
+	class Checker extends OutputStream{
+		Checksum checksum = new CRC32();
+		public void write (int b) throws IOException{
+			checksum.update(b);
+		}
+	}
+	
+	@Test
+	public void printWords() {
+		Checker checker = new Checker();
+		System.setOut(new PrintStream(checker));
+		encriptor.printWords("hola, que tal estas?");
+		Assert.assertEquals(1719384139L, checker.checksum.getValue());
+		
 	}
 
 }
