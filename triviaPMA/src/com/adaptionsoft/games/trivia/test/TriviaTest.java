@@ -9,6 +9,7 @@ import java.util.zip.Checksum;
 
 import junit.framework.Assert;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import com.adaptionsoft.games.trivia.runner.GameRunner;
@@ -17,10 +18,13 @@ import com.adaptionsoft.games.uglytrivia.Game;
 
 public class TriviaTest extends AbstractTriviaTest{
 
+	@Before
+	public void setUp(){
+		checker = new Checker();
+	}
 	
 	@Test
 	public void outputStream() {
-		Checker checker = new Checker();
 		System.setOut(new PrintStream(checker));
 		Random rand = new Random(0L);
 		Game game = GameRunner.initialize();
