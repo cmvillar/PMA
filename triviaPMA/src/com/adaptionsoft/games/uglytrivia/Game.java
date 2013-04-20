@@ -1,14 +1,16 @@
 package com.adaptionsoft.games.uglytrivia;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
+
+import com.adaptionsoft.games.trivia.dice.Dice;
 import com.adaptionsoft.games.trivia.runner.GameCards;
 
 public class Game {
 	private GameCards gameCards;
+	private Dice dice;
 	
-    ArrayList players = new ArrayList();
+    ArrayList<String> players = new ArrayList<String>();
     int[] places = new int[6];
     int[] purses  = new int[6];
     boolean[] inPenaltyBox  = new boolean[6];
@@ -17,9 +19,10 @@ public class Game {
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
     
-    public  Game(){
+    public  Game(Dice dice){
     	gameCards = new GameCards();
     	gameCards.initialiceGameCards();
+    	this.dice = dice;
     }
 
 	public boolean add(String playerName) {		
@@ -36,7 +39,8 @@ public class Game {
 		return players.size();
 	}
 
-	public void roll(int roll) {
+	public void roll() {
+		int roll = dice.roll();
 		System.out.println(players.get(currentPlayer) + " is the current player");
 		System.out.println("They have rolled a " + roll);
 		
@@ -84,14 +88,16 @@ public class Game {
 	}
 
 	private String currentCategory() {
-		if (places[currentPlayer] % 4 == 0) 
-			return "Pop";
-		else if (places[currentPlayer] % 4 == 1) 
-			return "Science";
-		else if (places[currentPlayer] % 4 == 2) 
-			return "Sports";
-		else
-			return "Rock";
+		if (places[currentPlayer] == 0) return "Pop";
+		if (places[currentPlayer] == 4) return "Pop";
+		if (places[currentPlayer] == 8) return "Pop";
+		if (places[currentPlayer] == 1) return "Science";
+		if (places[currentPlayer] == 5) return "Science";
+		if (places[currentPlayer] == 9) return "Science";
+		if (places[currentPlayer] == 2) return "Sports";
+		if (places[currentPlayer] == 6) return "Sports";
+		if (places[currentPlayer] == 10) return "Sports";
+		return "Rock";
 	}
 
 	public boolean wasCorrectlyAnswered() {
