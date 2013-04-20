@@ -30,7 +30,7 @@ public class TriviaTest {
 		Random rand = new Random(0L);
 		Game game = GameRunner.initialize();
 		GameRunner.run(game, rand);
-		Assert.assertEquals(1763398543L, checker.checksum.getValue());
+		Assert.assertEquals(590124755L, checker.checksum.getValue());
 		
 	}
 
