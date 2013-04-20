@@ -20,19 +20,9 @@ public class GameRunner {
 	}
 	
 	public static void run(Game aGame, Random rand) {
-		do {
-			
-			aGame.roll(rand.nextInt(5) + 1);
-			
-			if (rand.nextInt(9) == 7) {
-				notAWinner = aGame.wrongAnswer();
-			} else {
-				notAWinner = aGame.wasCorrectlyAnswered();
-			}
-			
-			
-			
-		} while (notAWinner);
+		do {			
+			aGame.roll();		
+		} while (!aGame.isAWinner());
 	}
 	
 	public static Game initialize(Random random){

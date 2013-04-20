@@ -26,8 +26,17 @@ public class Game {
     	gameCards.initialiceGameCards();
     	this.random = random;
     	this.dice = dice;
+    	dice.initialice(this.random);
     }
 
+    public boolean isAWinner(){
+		if (random.nextInt(9) == 7) {
+			return !wrongAnswer();
+		} else {
+			return !wasCorrectlyAnswered();
+		}
+    }
+    
 	public boolean add(String playerName) {
 	    players.add(playerName);
 	    places[howManyPlayers()] = 0;
@@ -43,7 +52,8 @@ public class Game {
 		return players.size();
 	}
 
-	public void roll(int roll) {
+	public void roll() {
+		int roll = dice.roll();
 		System.out.println(players.get(currentPlayer) + " is the current player");
 		System.out.println("They have rolled a " + roll);
 		
