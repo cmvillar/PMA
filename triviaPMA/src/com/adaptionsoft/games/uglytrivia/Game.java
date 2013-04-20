@@ -1,6 +1,7 @@
 package com.adaptionsoft.games.uglytrivia;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 
 import com.adaptionsoft.games.trivia.dice.Dice;
@@ -9,6 +10,7 @@ import com.adaptionsoft.games.trivia.runner.GameCards;
 public class Game {
 	private GameCards gameCards;
 	private Dice dice;
+	private Random random;
 	
     ArrayList<String> players = new ArrayList<String>();
     int[] places = new int[6];
@@ -19,13 +21,23 @@ public class Game {
     int currentPlayer = 0;
     boolean isGettingOutOfPenaltyBox;
     
-    public  Game(Dice dice){
+    public  Game(Random random, Dice dice){
     	gameCards = new GameCards();
     	gameCards.initialiceGameCards();
+    	this.random = random;
     	this.dice = dice;
+    	dice.initialice(random);
+    }
+    
+    public boolean isAWinner(){
+		if (random.nextInt(9) == 7) {
+			return !wrongAnswer();
+		} else {
+			return !wasCorrectlyAnswered();
+		}
     }
 
-	public boolean add(String playerName) {		
+	public boolean addPlayer(String playerName) {		
 	    players.add(playerName);
 	    places[howManyPlayers()] = 0;
 	    purses[howManyPlayers()] = 0;
@@ -40,8 +52,9 @@ public class Game {
 	}
 
 	public void roll() {
-		int roll = dice.roll();
+		int roll = 0;
 		System.out.println(players.get(currentPlayer) + " is the current player");
+		dice.roll();
 		System.out.println("They have rolled a " + roll);
 		
 		if (inPenaltyBox[currentPlayer]) {
@@ -101,6 +114,7 @@ public class Game {
 	}
 
 	public boolean wasCorrectlyAnswered() {
+		boolean winner = false;
 		if (inPenaltyBox[currentPlayer]){
 			if (isGettingOutOfPenaltyBox) {
 				System.out.println("Answer was correct!!!!");
@@ -110,18 +124,10 @@ public class Game {
 						+ purses[currentPlayer]
 						+ " Gold Coins.");
 				
-				boolean winner = didPlayerWin();
-				currentPlayer++;
-				if (currentPlayer == players.size()) currentPlayer = 0;
-				
-				return winner;
+				winner = didPlayerWin();
 			} else {
-				currentPlayer++;
-				if (currentPlayer == players.size()) currentPlayer = 0;
-				return true;
+				winner = true;
 			}
-			
-			
 			
 		} else {
 		
@@ -132,12 +138,10 @@ public class Game {
 					+ purses[currentPlayer]
 					+ " Gold Coins.");
 			
-			boolean winner = didPlayerWin();
-			currentPlayer++;
-			if (currentPlayer == players.size()) currentPlayer = 0;
-			
-			return winner;
+			winner = didPlayerWin();
 		}
+		nextPlayer();
+		return winner;
 	}
 	
 	public boolean wrongAnswer(){
@@ -145,9 +149,13 @@ public class Game {
 		System.out.println(players.get(currentPlayer)+ " was sent to the penalty box");
 		inPenaltyBox[currentPlayer] = true;
 		
+		nextPlayer();
+		return true;
+	}
+
+	public void nextPlayer() {
 		currentPlayer++;
 		if (currentPlayer == players.size()) currentPlayer = 0;
-		return true;
 	}
 	
 	/**
