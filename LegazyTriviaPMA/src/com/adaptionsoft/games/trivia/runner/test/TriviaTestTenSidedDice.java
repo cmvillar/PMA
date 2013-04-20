@@ -27,7 +27,6 @@ public class TriviaTestTenSidedDice extends AbstractTriviaTest{
 		Game game = GameRunner.initialize(rand, new TenSidedDice());
 		GameRunner.run(game, rand);
 		Assert.assertEquals(590124755L, checker.checksum.getValue());
-		
 	}
 
 }
