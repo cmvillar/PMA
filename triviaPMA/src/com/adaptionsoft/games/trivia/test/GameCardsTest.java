@@ -17,7 +17,7 @@ public class GameCardsTest extends AbstractTriviaTest{
 		GameCards gameCards = new GameCards();
 		gameCards.initialiceGameCards();
 		gameCards.askQuestion(GameCards.POP_CATEGORY);
-		Assert.assertEquals(1763398543L, checker.checksum.getValue());
+		Assert.assertEquals(0L, checker.checksum.getValue());
 	}
 
 }
