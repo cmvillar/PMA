@@ -26,12 +26,10 @@ public class GameRunner {
 	}
 	
 	public static Game initialize(Random rand) {
-		Game aGame = new Game(rand, new SingleDice());
+		Game aGame = new Game(rand, new TenSidedDice());
 		aGame.addPlayer("Chet");
 		aGame.addPlayer("Pat");
 		aGame.addPlayer("Sue");
 		return aGame;
 	}
-	
-
 }
