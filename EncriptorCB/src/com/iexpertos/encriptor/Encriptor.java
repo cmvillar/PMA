@@ -11,7 +11,30 @@ import com.iexpertos.encriptor.validator.Validator;
 
 public class Encriptor {
 	
-	public Validator validator;
+	private Validator validator;
+	private CharCrypterSentence charCrypterSentence;
+	private CharCrypterWordToNumber charCrypterWordToNumber;
+	private CharCrypterWordReplace charCrypterWordReplace;
+	
+	/* ------------- SETTERS ------------------ */
+	
+	public void setCharCrypterSentence(CharCrypterSentence charCrypterSentence) {
+		this.charCrypterSentence = charCrypterSentence;
+	}
+
+
+	public void setCharCrypterWordToNumber(
+			CharCrypterWordToNumber charCrypterWordToNumber) {
+		this.charCrypterWordToNumber = charCrypterWordToNumber;
+	}
+
+
+	public void setCharCrypterWordReplace(
+			CharCrypterWordReplace charCrypterWordReplace) {
+		this.charCrypterWordReplace = charCrypterWordReplace;
+	}
+	
+	/* ----------------------------------------- */
 	
 	public Encriptor(Validator validator){
 		this.validator = validator;
@@ -26,30 +49,29 @@ public class Encriptor {
 
 	public String cryptSentence(String sentence)
 	{
-		return crypt(sentence, new CharCrypterSentence());
+		return crypt(sentence, charCrypterSentence);
 	}
 	
-	public String cryptWordToNumbers(String word)
+	public String cryptWordToNumbers(String wordToCrypt)
 	{
-		validator.validate(word);
-		return crypt(word, new CharCrypterWordToNumber());
+		validator.validate(wordToCrypt);
+		return crypt(wordToCrypt, charCrypterWordToNumber);
 	}
 
-	public String cryptWord(String word, String charsToReplace)
+	public String cryptWord(String wordToCrypt, String charsToReplace)
 	{
-		validator.validate(word);
-		return crypt(word, new CharCrypterWordReplace(charsToReplace));
+		validator.validate(wordToCrypt);
+		charCrypterWordReplace.setCharsToReplace(charsToReplace);
+		return crypt(wordToCrypt, charCrypterWordReplace);
 	}
 	
-	private String crypt(String word, CharCrypter crypter){
-		char[] wordArray = word.toCharArray();
-		String newWord = "";
-		for (int i = 0; i < word.length(); i++)
-		{
-			newWord += crypter.crypt(wordArray[i]);
+	private String crypt(String wordToCrypt, CharCrypter crypter){	
+		char[] charsWordToCryptArray = wordToCrypt.toCharArray();
+		String encryptedWord = "";
+		for (char word : charsWordToCryptArray){
+			encryptedWord += crypter.crypt(word);
 		}
-		
-		return newWord;
+		return encryptedWord;
 	}
 	
 
