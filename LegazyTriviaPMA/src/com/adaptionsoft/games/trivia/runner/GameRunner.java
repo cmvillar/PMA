@@ -4,13 +4,11 @@ import java.util.Random;
 
 import com.adaptionsoft.games.trivia.dice.Dice;
 import com.adaptionsoft.games.trivia.dice.SingleDice;
-import com.adaptionsoft.games.trivia.dice.TenSidedDice;
+
 import com.adaptionsoft.games.uglytrivia.Game;
 
 
 public class GameRunner {
-
-	private static boolean notAWinner;
 
 	public static void main(String[] args) {
 		Random rand = new Random();
