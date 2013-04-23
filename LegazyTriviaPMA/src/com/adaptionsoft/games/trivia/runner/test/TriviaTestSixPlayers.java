@@ -26,7 +26,7 @@ public class TriviaTestSixPlayers extends AbstractTriviaTest{
 		Random rand = new Random(0L);
 		Game game = GameRunner.initializeSixPlayers(rand, new SingleDice(), new ConsoleDevice());
 		GameRunner.run(game, rand);
-		Assert.assertEquals(590124755L, checker.checksum.getValue());
+		Assert.assertEquals(1031644807L, checker.checksum.getValue());
 		
 	}
 
