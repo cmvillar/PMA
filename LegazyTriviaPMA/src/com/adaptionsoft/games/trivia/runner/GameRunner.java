@@ -36,4 +36,18 @@ public class GameRunner {
 		return aGame;
 		
 	}
+	
+	public static Game initializeSixPlayers(Random random, Dice dice, OutputDevice outputDevice){
+		Game aGame = new Game(random, dice, outputDevice);
+		
+		aGame.add("Chet");
+		aGame.add("Pat");
+		aGame.add("Sue");
+		aGame.add("John");
+		aGame.add("Moon");
+		aGame.add("Boris");
+		
+		return aGame;
+		
+	}
 }

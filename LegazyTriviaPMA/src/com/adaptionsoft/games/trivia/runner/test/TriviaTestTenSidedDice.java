@@ -8,7 +8,6 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.adaptionsoft.games.trivia.dice.SingleDice;
 import com.adaptionsoft.games.trivia.dice.TenSidedDice;
 import com.adaptionsoft.games.trivia.outputdevice.ConsoleDevice;
 import com.adaptionsoft.games.trivia.runner.GameRunner;
