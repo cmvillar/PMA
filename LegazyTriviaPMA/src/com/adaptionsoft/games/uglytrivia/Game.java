@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.adaptionsoft.games.trivia.dice.Dice;
+import com.adaptionsoft.games.trivia.outputdevice.OutputDevice;
 import com.adaptionsoft.games.trivia.runner.GameCards;
 
 
@@ -11,17 +12,19 @@ public class Game {
 	private GameCards gameCards;
 	private Random random;
 	private Dice dice;
+	private OutputDevice outputDevice;
 	
     private ArrayList<Player> players = new ArrayList<Player>();
     
     private int currentPlayerIndex = 0;
 
     
-    public  Game(Random random, Dice dice){
+    public  Game(Random random, Dice dice, OutputDevice outputDevice){
        	gameCards = new GameCards();
     	gameCards.initialiceGameCards();
     	this.random = random;
     	this.dice = dice;
+    	this.outputDevice = outputDevice;
     	dice.initialice(this.random);
     }
 
@@ -39,39 +42,33 @@ public class Game {
     }
     
 	public boolean add(String playerName) {
-		Player player = new Player(playerName);
+		Player player = new Player(playerName, outputDevice);
 		players.add(player);
 	    
-	    System.out.println(playerName + " was added");
-	    System.out.println("They are player number " + players.size());
+	    outputDevice.showMessage(playerName + " was added");
+	    outputDevice.showMessage("They are player number " + players.size());
 		return true;
 	}
 	
-	public int howManyPlayers() {
-		return players.size();
-	}
-
 	public void roll() {
 		int roll = dice.roll();
 		Player currentPlayer = getCurrentPlayer();
 		
-		System.out.println(currentPlayer.getName()  + " is the current player");
-		System.out.println("They have rolled a " + roll);
+		outputDevice.showMessage(currentPlayer.getName()  + " is the current player");
+		outputDevice.showMessage("They have rolled a " + roll);
 
 		if(currentPlayer.isInPenaltyBox()){
 			if (roll % 2 != 0) {
 				currentPlayer.gettingOutOfPenaltyBox();
-				System.out.println(currentPlayer.getName() + " is getting out of the penalty box");
+				outputDevice.showMessage(currentPlayer.getName() + " is getting out of the penalty box");
 				
 				currentPlayer.move(roll);
 				
-				System.out.println(currentPlayer.getName() 
-						+ "'s new location is " 
-						+ currentPlayer.getPlace());
-				System.out.println("The category is " + currentPlayer.getCurrentCategory());
+				outputDevice.showMessage(currentPlayer.getName() + "'s new location is " + currentPlayer.getPlace());
+				outputDevice.showMessage("The category is " + currentPlayer.getCurrentCategory());
 				askQuestion();
 			} else {
-				System.out.println(currentPlayer.getName() + " is not getting out of the penalty box");
+				outputDevice.showMessage(currentPlayer.getName() + " is not getting out of the penalty box");
 				currentPlayer.keepInPenaltyBox(); 
 			}
 			
@@ -79,10 +76,10 @@ public class Game {
 		
 			currentPlayer.move(roll);
 			
-			System.out.println(currentPlayer.getName()
+			outputDevice.showMessage(currentPlayer.getName()
 					+ "'s new location is " 
 					+ currentPlayer.getPlace());
-			System.out.println("The category is " + currentPlayer.getCurrentCategory());
+			outputDevice.showMessage("The category is " + currentPlayer.getCurrentCategory());
 			askQuestion();
 		}
 		

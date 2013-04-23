@@ -1,14 +1,18 @@
 package com.adaptionsoft.games.uglytrivia;
 
+import com.adaptionsoft.games.trivia.outputdevice.OutputDevice;
+
 class Player{
 	private int purses;
 	private boolean isInPenaltyBox;
 	private boolean isGettingOutOfPenaltyBox;
 	private String name;
 	private int place;
+	private OutputDevice outputDevice;
 	
-	public Player(String name){
+	public Player(String name, OutputDevice outputDevice){
 		this.name = name;
+		this.outputDevice = outputDevice;
 	}
 	
 	private void incPurses(){
@@ -35,10 +39,6 @@ class Player{
 		return isGettingOutOfPenaltyBox;
 	}
 	
-	/*public void setInPenaltyBox(boolean isInPenaltyBox){
-		this.isInPenaltyBox = isInPenaltyBox;
-	}*/
-	
 	public void gettingOutOfPenaltyBox(){
 		this.isGettingOutOfPenaltyBox = true;
 	}
@@ -58,8 +58,8 @@ class Player{
 
 
 	public boolean wrongAnswer(){
-		System.out.println("Question was incorrectly answered");
-		System.out.println(name+ " was sent to the penalty box");
+		outputDevice.showMessage("Question was incorrectly answered");
+		outputDevice.showMessage(name+ " was sent to the penalty box");
 		isInPenaltyBox = true;
 		return true;
 	}
@@ -82,13 +82,9 @@ class Player{
 
 	private boolean answerWasCorrect() {
 		boolean winner;
-		System.out.println("Answer was correct!!!!");
+		outputDevice.showMessage("Answer was correct!!!!");
 		incPurses();
-		System.out.println(name
-				+ " now has "
-				+ purses
-				+ " Gold Coins.");
-		
+		outputDevice.showMessage(name + " now has " + purses + " Gold Coins.");
 		winner = didPlayerWin();
 		return winner;
 	}
