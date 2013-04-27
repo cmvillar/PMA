@@ -26,7 +26,7 @@ public class TriviaTestTwoDices extends AbstractTriviaTest{
 		Random rand = new Random(0L);
 		Game game = GameRunner.initialize(rand, new TwoDices(), new ConsoleDevice());
 		GameRunner.run(game, rand);
-		Assert.assertEquals(1830819975L, checker.checksum.getValue());
+		Assert.assertEquals(2081263841L, checker.checksum.getValue());
 	}
 
 }
