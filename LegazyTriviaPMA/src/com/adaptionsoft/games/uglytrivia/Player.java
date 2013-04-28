@@ -1,18 +1,19 @@
 package com.adaptionsoft.games.uglytrivia;
 
-import com.adaptionsoft.games.trivia.outputdevice.OutputDevice;
+import com.adaptionsoft.games.trivia.messages.MessageBuilder;
 
-class Player{
+
+public class Player{
 	private int purses;
 	private boolean isInPenaltyBox;
 	private boolean isGettingOutOfPenaltyBox;
 	private String name;
 	private int place;
-	private OutputDevice outputDevice;
+	private MessageBuilder messageManager;
 	
-	public Player(String name, OutputDevice outputDevice){
+	public Player(String name, MessageBuilder messageManager){
 		this.name = name;
-		this.outputDevice = outputDevice;
+		this.messageManager = messageManager;
 	}
 	
 	private void incPurses(){
@@ -52,43 +53,43 @@ class Player{
 			place = place - 12;
 	}
 
-	private boolean didPlayerWin() {
+	/**
+	 * A Player wins when purses==6
+	 * @return
+	 */
+	private boolean isPlayerWinner() {
 		return !(purses== 6);
 	}
 
 
-	public boolean wrongAnswer(){
-		outputDevice.showMessage("Question was incorrectly answered");
-		outputDevice.showMessage(name+ " was sent to the penalty box");
+	public void wrongAnswer(){
+		messageManager.showQuestionWasIncorrectlyAnswerd();
+		messageManager.showPlayerSentToPenalty(name);
 		isInPenaltyBox = true;
-		return true;
 	}
 	
 	public boolean wasCorrectlyAnswered() {
-		boolean winner = false;
+		boolean correctAnswer = false;
 		if (isInPenaltyBox){
 			if (isGettingOutOfPenaltyBox) {
-				winner = answerWasCorrect();
+				correctAnswer = answerWasCorrect();
 			} else {
-				winner = true;
+				correctAnswer = true;
 			}
 			
 		} else {
 		
-			winner = answerWasCorrect();
+			correctAnswer = answerWasCorrect();
 		}
-		return winner;
+		return correctAnswer;
 	}
 
 	private boolean answerWasCorrect() {
-		boolean winner;
-		outputDevice.showMessage("Answer was correct!!!!");
+		messageManager.showAnswerWasCorrect();
 		incPurses();
-		outputDevice.showMessage(name + " now has " + purses + " Gold Coins.");
-		winner = didPlayerWin();
-		return winner;
-	}
-	
+		messageManager.showPlayerGoldenCoins(name, purses);
+		return isPlayerWinner();
+	}	
 	
 	public String getCurrentCategory() {
 		if (place == 0) return "Pop";

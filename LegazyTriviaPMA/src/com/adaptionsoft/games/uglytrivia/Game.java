@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import com.adaptionsoft.games.trivia.dice.Dice;
+import com.adaptionsoft.games.trivia.messages.MessageBuilder;
 import com.adaptionsoft.games.trivia.outputdevice.OutputDevice;
 import com.adaptionsoft.games.trivia.runner.GameCards;
 
@@ -12,7 +13,7 @@ public class Game {
 	private GameCards gameCards;
 	private Random random;
 	private Dice dice;
-	private OutputDevice outputDevice;
+	private MessageBuilder messageBuilder;
 	
     private ArrayList<Player> players = new ArrayList<Player>();
     
@@ -24,7 +25,7 @@ public class Game {
     	gameCards.initialiceGameCards();
     	this.random = random;
     	this.dice = dice;
-    	this.outputDevice = outputDevice;
+    	this.messageBuilder = new MessageBuilder(outputDevice);
     	dice.initialice(this.random);
     }
 
@@ -33,7 +34,7 @@ public class Game {
     	boolean isAWinner = false;
     	Player player = getCurrentPlayer();
 		if (random.nextInt(9) == 7) {
-			isAWinner = !player.wrongAnswer();
+			player.wrongAnswer();
 		} else {
 			isAWinner = !player.wasCorrectlyAnswered();			
 		}
@@ -42,44 +43,39 @@ public class Game {
     }
     
 	public boolean add(String playerName) {
-		Player player = new Player(playerName, outputDevice);
+		Player player = new Player(playerName, messageBuilder);
 		players.add(player);
 	    
-	    outputDevice.showMessage(playerName + " was added");
-	    outputDevice.showMessage("They are player number " + players.size());
+	    messageBuilder.showPlayerNameAdded(playerName);
+	    messageBuilder.showNumberOfPlayers(players.size());
 		return true;
 	}
-	
+
 	public void roll() {
 		int roll = dice.roll();
 		Player currentPlayer = getCurrentPlayer();
 		
-		outputDevice.showMessage(currentPlayer.getName()  + " is the current player");
-		outputDevice.showMessage("They have rolled a " + roll);
+		messageBuilder.showCurrentPlayer(currentPlayer.getName());
+		messageBuilder.showRollDice(roll);
 
 		if(currentPlayer.isInPenaltyBox()){
 			if (roll % 2 != 0) {
 				currentPlayer.gettingOutOfPenaltyBox();
-				outputDevice.showMessage(currentPlayer.getName() + " is getting out of the penalty box");
-				
-				currentPlayer.move(roll);
-				
-				outputDevice.showMessage(currentPlayer.getName() + "'s new location is " + currentPlayer.getPlace());
-				outputDevice.showMessage("The category is " + currentPlayer.getCurrentCategory());
+				messageBuilder.showPlayerIsGettingOutOfPenaltyBox(currentPlayer.getName());
+				currentPlayer.move(roll);		
+				messageBuilder.showCurrentLocationAndCategory(currentPlayer.getName(),
+						currentPlayer.getPlace(), currentPlayer.getCurrentCategory());
 				askQuestion();
 			} else {
-				outputDevice.showMessage(currentPlayer.getName() + " is not getting out of the penalty box");
+				messageBuilder.showPlayerIsNotGettingOutOfPenaltyBox(currentPlayer.getName());
 				currentPlayer.keepInPenaltyBox(); 
 			}
 			
 		} else {
 		
 			currentPlayer.move(roll);
-			
-			outputDevice.showMessage(currentPlayer.getName()
-					+ "'s new location is " 
-					+ currentPlayer.getPlace());
-			outputDevice.showMessage("The category is " + currentPlayer.getCurrentCategory());
+			messageBuilder.showCurrentLocationAndCategory(currentPlayer.getName(),
+					currentPlayer.getPlace(), currentPlayer.getCurrentCategory());
 			askQuestion();
 		}
 		

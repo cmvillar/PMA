@@ -17,7 +17,6 @@ public class GameRunner {
 		OutputDevice outputDevice = new ConsoleDevice();
 		Game aGame = initialize(rand,new SingleDice(), outputDevice);
 		run(aGame, rand);
-		
 	}
 	
 	public static void run(Game aGame, Random rand) {
