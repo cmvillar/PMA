@@ -1,5 +1,7 @@
 package com.adaptionsoft.games.trivia.messages;
 
+import java.text.MessageFormat;
+
 import com.adaptionsoft.games.trivia.outputdevice.OutputDevice;
 
 public class MessageBuilder {
@@ -10,6 +12,54 @@ public class MessageBuilder {
 	}
 	
 	public void showRollDice(int roll) {
+		outputDevice.showMessage(MessageFormat.format(MessageManager.getInstance().getValue("player.roll"),roll));
+	}
+	
+	public void showCurrentPlayer(String name) {
+		outputDevice.showMessage(MessageFormat.format( MessageManager.getInstance().getValue("player.name"),name));
+	}
+
+
+	public void showPlayerIsNotGettingOutOfPenaltyBox(String name) {
+		outputDevice.showMessage(MessageFormat.format(MessageManager.getInstance().getValue("player.is.not.getting.out.penalty"),name));
+	}
+
+
+	public void showPlayerIsGettingOutOfPenaltyBox(String name) {
+		outputDevice.showMessage(MessageFormat.format(MessageManager.getInstance().getValue("player.is.getting.out.penalty"),name));
+	}
+
+
+	public void showCurrentLocationAndCategory(String name, int place, String category) {
+		outputDevice.showMessage(MessageFormat.format(MessageManager.getInstance().getValue("player.new.location"),new Object[]{name,"'",place}));
+		outputDevice.showMessage(MessageFormat.format(MessageManager.getInstance().getValue("category"),category));
+	}
+	
+	public void showPlayerSentToPenalty(String name) {
+		outputDevice.showMessage(MessageFormat.format(MessageManager.getInstance().getValue("player.sent.penalty"),name));
+	}
+
+	public void showQuestionWasIncorrectlyAnswerd() {
+		outputDevice.showMessage(MessageManager.getInstance().getValue("question.incorrenctly.answered"));
+	}
+	
+	public void showPlayerGoldenCoins(String name, int purses) {
+		outputDevice.showMessage(MessageFormat.format(MessageManager.getInstance().getValue("golden.coins"),name,purses));
+	}
+
+	public void showAnswerWasCorrect() {
+		outputDevice.showMessage(MessageManager.getInstance().getValue("answer.correct"));
+	}
+
+	public void showNumberOfPlayers(int numberOfPlayers) {
+		outputDevice.showMessage(MessageFormat.format(MessageManager.getInstance().getValue("number.of.players") ,numberOfPlayers));
+	}
+	
+	public void showPlayerNameAdded(String playerName) {
+		outputDevice.showMessage(MessageFormat.format(MessageManager.getInstance().getValue("user.added"),playerName));
+	}
+	
+/*	public void showRollDice(int roll) {
 		outputDevice.showMessage(MessageManager.getInstance().getValue("player.roll")+" "+ roll);
 	}
 	
@@ -57,4 +107,5 @@ public class MessageBuilder {
 	public void showPlayerNameAdded(String playerName) {
 		outputDevice.showMessage(playerName+ " " + MessageManager.getInstance().getValue("user.added"));
 	}
+	*/
 }

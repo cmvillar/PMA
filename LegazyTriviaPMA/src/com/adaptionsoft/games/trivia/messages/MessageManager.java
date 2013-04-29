@@ -10,7 +10,7 @@ public class MessageManager {
 	
 	protected MessageManager(){
 		try {
-			properties.load(MessageManager.class.getResourceAsStream("mensajes.properties"));
+			properties.load(MessageManager.class.getResourceAsStream("mensajes_param.properties"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
