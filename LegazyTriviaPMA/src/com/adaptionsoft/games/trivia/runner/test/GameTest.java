@@ -68,4 +68,15 @@ public class GameTest {
 		expectedResult.add(new Player("Chet"));
 		Assert.assertEquals(expectedResult, aGame.getPlayers());
 	}
+	
+	@Test
+	public void removeExistingPlayer(){
+		Random random = new Random();
+		OutputDevice outputDevice = new ConsoleDevice();
+		Game aGame = new Game(random, new SingleDice(), outputDevice);
+		aGame.addPLayer("Chet");
+		aGame.removePlayer("Chet");
+		ArrayList<Player> expectedResult = new ArrayList<Player>();
+		Assert.assertEquals(expectedResult, aGame.getPlayers());
+	}
 }
