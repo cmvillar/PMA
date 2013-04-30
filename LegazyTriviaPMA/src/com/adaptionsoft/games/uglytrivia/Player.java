@@ -11,13 +11,16 @@ public class Player{
 	private int place;
 	private MessageBuilder messageManager;
 	
-	public Player(String name, MessageBuilder messageManager){
+	public Player(String name){
 		this.name = name;
-		this.messageManager = messageManager;
 	}
 	
 	private void incPurses(){
 		purses++;
+	}
+	
+	public void setMessageManager(MessageBuilder messageManager){
+		this.messageManager = messageManager;
 	}
 	
 	public void putInPenaltyBox(){
@@ -102,5 +105,14 @@ public class Player{
 		if (place == 6) return "Sports";
 		if (place == 10) return "Sports";
 		return "Rock";
+	}
+	
+	public boolean equals (Object o){
+		if(o!=null && o instanceof Player){
+			return name.equals(((Player)o).getName());
+		}else{
+			return false;
+		}
+			
 	}
 }

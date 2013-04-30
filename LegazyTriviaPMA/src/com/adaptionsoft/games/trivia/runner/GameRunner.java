@@ -28,9 +28,9 @@ public class GameRunner {
 	public static Game initialize(Random random, Dice dice, OutputDevice outputDevice){
 		Game aGame = new Game(random, dice, outputDevice);
 		
-		aGame.add("Chet");
-		aGame.add("Pat");
-		aGame.add("Sue");
+		aGame.addPLayer("Chet");
+		aGame.addPLayer("Pat");
+		aGame.addPLayer("Sue");
 		
 		return aGame;
 		
@@ -39,12 +39,12 @@ public class GameRunner {
 	public static Game initializeSixPlayers(Random random, Dice dice, OutputDevice outputDevice){
 		Game aGame = new Game(random, dice, outputDevice);
 		
-		aGame.add("Chet");
-		aGame.add("Pat");
-		aGame.add("Sue");
-		aGame.add("John");
-		aGame.add("Moon");
-		aGame.add("Boris");
+		aGame.addPLayer("Chet");
+		aGame.addPLayer("Pat");
+		aGame.addPLayer("Sue");
+		aGame.addPLayer("John");
+		aGame.addPLayer("Moon");
+		aGame.addPLayer("Boris");
 		
 		return aGame;
 		

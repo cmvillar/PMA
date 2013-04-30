@@ -1,6 +1,7 @@
 package com.adaptionsoft.games.uglytrivia;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 import com.adaptionsoft.games.trivia.dice.Dice;
@@ -42,13 +43,23 @@ public class Game {
 		return isAWinner;
     }
     
-	public boolean add(String playerName) {
-		Player player = new Player(playerName, messageBuilder);
+    public List<Player> getPlayers(){
+    	return players;
+    }
+    
+	public boolean addPLayer(String playerName) {
+		Player player = new Player(playerName);
+		player.setMessageManager(messageBuilder);
 		players.add(player);
 	    
 	    messageBuilder.showPlayerNameAdded(playerName);
 	    messageBuilder.showNumberOfPlayers(players.size());
 		return true;
+	}
+	
+	public void removePlayer(String playerName){
+		Player playerToRemove = new Player(playerName);
+		players.remove(playerToRemove);
 	}
 
 	public void roll() {
