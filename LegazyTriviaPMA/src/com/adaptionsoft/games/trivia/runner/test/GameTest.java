@@ -59,6 +59,13 @@ public class GameTest {
 	
 	@Test
 	public void removeNoneExistPlayer(){
-		Assert.fail();
+		Random random = new Random();
+		OutputDevice outputDevice = new ConsoleDevice();
+		Game aGame = new Game(random, new SingleDice(), outputDevice);
+		aGame.addPLayer("Chet");
+		aGame.removePlayer("Chet2");
+		ArrayList<Player> expectedResult = new ArrayList<Player>();
+		expectedResult.add(new Player("Chet"));
+		Assert.assertEquals(expectedResult, aGame.getPlayers());
 	}
 }
