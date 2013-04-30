@@ -28,6 +28,26 @@ public class GameTest {
 	
 	@Test
 	public void addSixthPlayer() {
+		Random random = new Random();
+		OutputDevice outputDevice = new ConsoleDevice();
+		Game aGame = new Game(random, new SingleDice(), outputDevice);
+		aGame.addPLayer("Chet");
+		aGame.addPLayer("Chet2");
+		aGame.addPLayer("Chet3");
+		aGame.addPLayer("Chet4");
+		aGame.addPLayer("Chet5");
+		aGame.addPLayer("Chet6");
+		ArrayList<Player> expectedResult = new ArrayList<Player>();
+		expectedResult.add(new Player("Chet"));
+		expectedResult.add(new Player("Chet2"));
+		expectedResult.add(new Player("Chet3"));
+		expectedResult.add(new Player("Chet4"));
+		expectedResult.add(new Player("Chet5"));
+		expectedResult.add(new Player("Chet6"));
+		Assert.assertEquals(expectedResult, aGame.getPlayers());
+	}
+	
+	public void removePlayerFromEmptyList(){
 		Assert.fail();
 	}
 }
