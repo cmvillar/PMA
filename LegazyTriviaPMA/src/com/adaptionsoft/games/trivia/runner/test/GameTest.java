@@ -25,4 +25,9 @@ public class GameTest {
 		expectedResult.add(new Player("Chet"));
 		Assert.assertEquals(expectedResult, aGame.getPlayers());
 	}
+	
+	@Test
+	public void addSixthPlayer() {
+		Assert.fail();
+	}
 }
